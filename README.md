@@ -78,7 +78,7 @@ _Ilustração representando o fluxo de autenticação com o Interceptor Angular.
 ### 🏠 **Autenticação**  
 
 #### 🔹 Login  
-`POST /api/auth/login`  
+`POST /auth/login`  
 **Descrição:** Realiza a autenticação do usuário e retorna um JWT.  
 
 ```json:  
