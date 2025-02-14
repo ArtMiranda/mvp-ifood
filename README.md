@@ -37,6 +37,30 @@ Este projeto é um MVP (Minimum Viable Product) inspirado no iFood, desenvolvido
 
 ---
 
+### 🖼️ Imagens do Projeto  
+
+_Tela de Login._  
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/98cef9ba-d16c-4106-b495-78f17a3a6d18" alt="Tela de Login"/>
+</div>
+
+---
+
+_Tela Inicial._  
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/efaca236-051b-4fee-923e-d84aea116539" alt="Tela Inicial"/>
+</div>
+
+---
+
+_Carrinho (sacola)._  
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/6a022041-9f75-49ea-9701-b26950e8e8f7" alt="Carrinho (sacola)"/>
+</div>
+
+---
+
+
 ## 🔐 Autenticação JWT  
 
 A autenticação na aplicação é baseada em **JWT (JSON Web Token)**, garantindo segurança nas requisições entre o frontend (Angular) e o backend (Spring Boot).  
