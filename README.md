@@ -143,7 +143,7 @@ Primeiro, clone o repositório
 
 ### 🔹 Backend (Spring Boot)
 
-1. cd backend/mvp-ifood
+1. cd back/mvp-ifood-back
     
 2.  **Configure o banco de dados**
     
@@ -155,7 +155,7 @@ Primeiro, clone o repositório
     
 ### 🔹 Frontend (Angular)
 
-1.  cd mvp-ifood/frontend
+1.  cd front/mvp-ifood-front
     
 2.  npm install
     
