@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+    --color-ifood-red: #ea1d2c;
+    --color-ifood-gray: #E7E7E7;
+}
+  
+* {
+    font-family: 'Inter', sans-serif;
+}

@@ -1,0 +1,31 @@
+<header class="bg-white shadow-md p-4 flex flex-col">
+  <div class="flex justify-between px-2 items-center">
+    <a class="cursor-pointer" routerLink="/home">
+      <img src="assets/ifood-logo-red.svg" alt="Logo" class="h-8 w-auto" />
+    </a>
+
+    <div class="w-full flex" [ngClass]="{ 'justify-between': showSearch, 'justify-end': !showSearch }">
+      <div class="px-8 hidden md:block w-full">
+        <input [(ngModel)]="input" (ngModelChange)="onInputChange()" type="text" placeholder="Estou com fome de..."
+          [ngClass]="{ 'block': showSearch, 'hidden': !showSearch }"
+          class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ifood-red" />
+      </div>
+
+      <div class="w-full md:w-32 pl-20 md:pl-0 h-full flex justify-end items-center">
+        <div class="mr-4" (click)="goToCart()">
+          <i class="bx bx-shopping-bag text-xl cursor-pointer text-ifood-red rounded-full p-2" [ngClass]="{
+            ' bg-red-100': cartSelected,
+            ' active:text-red-700 hover:bg-red-100 active:bg-red-300 transition duration-300 ': !cartSelected
+         }"> </i>
+
+        </div>
+        <app-button class="w-full" (click)="logout()" label="Sair" type="button"></app-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full mt-4 px-2 md:hidden" *ngIf="showSearch">
+    <input [(ngModel)]="input" (ngModelChange)="onInputChange()" type="text" placeholder="Estou com fome de..."
+      class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ifood-red" />
+  </div>
+</header>

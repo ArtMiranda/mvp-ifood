@@ -1,0 +1,8 @@
+<div class="relative w-full">
+    <swiper-container slides-per-view="auto" loop="true" autoplay-delay="2500" autoplay-disable-on-interaction="false"
+        centeredSlides="true" space-between="10" navigation="false" class="w-full">
+        <swiper-slide *ngFor="let image of images" class="m-auto flex justify-center w-[80%] md:w-[40%]">
+            <img [src]="image" alt="Banner" class="w-full object-cover rounded-lg" />
+        </swiper-slide>
+    </swiper-container>
+</div>

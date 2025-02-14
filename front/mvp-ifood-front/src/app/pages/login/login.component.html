@@ -1,0 +1,35 @@
+<div class="flex h-screen">
+  <div class="hidden md:flex md:w-6/10 bg-cover bg-center" style="background-image: url('assets/cover-image.jpg');">
+  </div>
+
+  <div class="w-full md:w-4/10 flex flex-col justify-center items-center bg-white p-8 shadow-lg">
+    <div class="w-full max-w-sm">
+      <div class="flex justify-center mb-12">
+        <img src="assets/ifood-logo-red.svg" alt="Logo Ifood" class="w-24">
+      </div>
+
+      <h2 class="text-3xl font-bold text-ifood-red text-center">Bem vindo de volta!</h2>
+      <form class="mt-6" (submit)="login()">
+        <div class="mb-5">
+          <app-input type="email" label="Email" placeholder="Digite seu email" id="email" name="email" [(ngModel)]="email"
+            [required]="true"></app-input>
+        </div>
+
+        <div class="mb-5">
+          <app-input type="password" label="Senha" placeholder="Digite sua senha" id="password" name="password" [(ngModel)]="password"
+            [required]="true"></app-input>
+            <p class="text-red-600 text-sm" *ngIf="errorMessage">{{ errorMessage }}</p>
+          <div class="text-right">
+            <a href="#" class="text-ifood-red hover:underline text-sm underline">Esqueci minha senha</a>
+          </div>
+        </div>
+
+        <app-button [loading]="isLoading" label="Entrar" type="submit"></app-button>
+
+        <div class="text-center mt-12">
+          <a href="#" class="text-ifood-red hover:underline text-sm underline">Não tenho uma conta</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

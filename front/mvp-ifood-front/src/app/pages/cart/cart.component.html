@@ -1,0 +1,61 @@
+<app-header [showSearch]="false" [cartSelected]="true"></app-header>
+
+<div class="p-8 rounded-lg min-h-screen">
+    <h2 class="text-xl font-bold text-ifood-red mb-4">Sua sacola</h2>
+  
+    <div *ngIf="cartItems.length > 0; else emptyCart">
+      <ul class="space-y-4">
+        <li *ngFor="let item of cartItems" class="flex items-center space-x-4 border-b pb-4">
+          <div class="flex items-center space-x-4">
+            <img [src]="getSanitizedImage(item.product.image)" alt="{{ item.product.name }}" class="w-36 h-36 object-cover rounded-lg" />
+            <div class="flex flex-col">
+              <h4 class="font-semibold text-lg">{{ item.product.name }}</h4>
+              <p class="text-gray-600">Preço: R$ {{ item.product.price | number: '1.2-2' }}</p>
+  
+              <label for="quantity" class="text-sm text-gray-700">Quantidade:</label>
+              <div class="flex items-center">
+                <button
+                    (click)="updateQuantity(item.product.id, item.quantity - 1)"
+                    class="w-9 h-9 hover:bg-gray-100 flex items-center justify-center border cursor-pointer border-gray-400 rounded-md"
+                >
+                    <i class="bx bx-minus text-xl text-ifood-red font-bold"></i>
+                </button>
+                
+                <span class="mx-4 text-xl font-bold">{{ item.quantity }}</span>
+                
+                <button
+                    (click)="updateQuantity(item.product.id, item.quantity + 1)"
+                    class="w-9 h-9 flex hover:bg-gray-100 items-center justify-center border cursor-pointer border-gray-400 rounded-md"
+                >
+                    <i class="bx bx-plus text-xl text-ifood-red font-bold"></i>
+                </button>
+            </div>            
+  
+              <button
+                (click)="removeFromCart(item.product.id)"
+                class="mt-2 text-sm cursor-pointer text-white bg-ifood-red hover:bg-red-700 active:bg-red-800 rounded-lg py-1 px-4"
+              >
+                Remover
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+  
+      <div class="total mt-6 flex justify-between items-center">
+        <p class="font-bold text-lg">Total: R$ {{ total | number: '1.2-2' }}</p>
+        <button
+          (click)="clearCart()"
+          class="text-white cursor-pointer bg-ifood-red hover:bg-red-700 active:bg-red-800 py-2 px-6 rounded-lg"
+        >
+          Limpar Sacola
+        </button>
+      </div>
+    </div>
+  
+    <ng-template #emptyCart>
+      <p class="text-gray-600">A sua sacola está vazia.</p>
+    </ng-template>
+</div>
+  
+<app-footer></app-footer>

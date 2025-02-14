@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="create-table-users" author="Artur C. Miranda">
+        <createTable tableName="users">
+            <column name="id" type="serial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="boolean" defaultValueBoolean="true"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="use-uuid-table-users" author="Artur C. Miranda">
+        <dropTable tableName="users"/>
+
+        <createTable tableName="users">
+            <column name="id" type="UUID" defaultValueComputed="gen_random_uuid()">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="boolean" defaultValueBoolean="true"/>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="create-restaurants-table" author="Artur C. Miranda">
+        <createTable tableName="restaurants">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="VARCHAR(50)"/>
+            <column name="address" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="banner" type="TEXT"/>
+            <column name="picture" type="TEXT"/>
+            <column name="rating" type="DECIMAL(2,1)" defaultValue="0.0"/>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-telephone-to-restaurants" author="Artur C. Miranda">
+        <addColumn tableName="restaurants">
+            <column name="telephone" type="VARCHAR(20)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="create-products-table" author="Artur C. Miranda">
+        <createTable tableName="products">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="restaurant_id" type="UUID">
+                <constraints nullable="false" foreignKeyName="fk_product_restaurant" references="restaurants(id)"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="price" type="DECIMAL(10,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image" type="TEXT"/>
+            <column name="alcoholic" type="BOOLEAN" defaultValueBoolean="false"/>
+            <column name="vegetarian" type="BOOLEAN" defaultValueBoolean="false"/>
+            <column name="available" type="BOOLEAN" defaultValueBoolean="true"/>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-product-attributes" author="Artur C. Miranda">
+        <addColumn tableName="products">
+            <column name="vegan" type="BOOLEAN" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="allergens" type="TEXT"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="add-gluten-free-attribute" author="Artur C. Miranda">
+        <addColumn tableName="products">
+            <column name="gluten_free" type="BOOLEAN" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="add-doneness-attribute" author="Artur C. Miranda">
+        <addColumn tableName="products">
+            <column name="doneness" type="VARCHAR(50)">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="alter-image-field-type-to-text" author="Artur C. Miranda">
+        <modifyDataType tableName="products" columnName="image" newDataType="text"/>
+    </changeSet>
+
+    <changeSet id="alter-type-field-type-to-smallInt" author="Artur C. Miranda">
+        <modifyDataType tableName="products" columnName="type" newDataType="smallint"/>
+    </changeSet>
+
+    <changeSet id="alter-type-field-type-to-varchar" author="Artur C. Miranda">
+        <modifyDataType tableName="products" columnName="type" newDataType="varchar(31)"/>
+    </changeSet>
+
+</databaseChangeLog>

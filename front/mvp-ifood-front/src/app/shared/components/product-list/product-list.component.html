@@ -1,0 +1,34 @@
+<section>
+    <div class="py-4" *ngIf="products.length != 0">
+        <h1 class="text-2xl font-semibold">{{label}}</h1>
+        <p class="text-gray-700 text-sm pt-1" *ngIf="subtitle">{{subtitle}}</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div *ngFor="let product of products" (click)="goToProductPage(product!.id)"
+            class="bg-white shadow-sm border border-gray-200 rounded-lg p-4 pb-0 cursor-pointer transition-transform duration-500 transform hover:scale-101 hover:shadow-md">
+            <img [src]="getSanitizedImage(product.image)" alt="{{ product.name }}"
+                class="w-full h-46 object-cover rounded-md">
+            <h2 class="text-lg font-bold mt-2">{{ product.name }}</h2>
+            <p class="text-sm text-gray-600">{{ product.description }}</p>
+            <div class="items-center">
+                <p class="text-gray-500 text-end pr-2 mt-1">R$ {{ product.price.toFixed(2) }}</p>
+                <span *ngIf="product.vegetarian && !product.vegan"
+                    class="text-sm text-green-500 font-bold block mb-1">Vegetariano</span>
+                <span *ngIf="product.vegan" class="text-sm text-green-500 font-bold block mb-1">Vegano</span>
+                <span *ngIf="product.glutenFree" class="text-sm text-yellow-500 font-bold block mb-1">Sem Glúten</span>
+                <span *ngIf="product.alcoholic" class="text-sm text-red-500 font-bold block mb-1">Alcoólico</span>
+            </div>
+
+            <div class="flex items-center mt-2">
+                <!-- <span class="text-green-600 font-bold">{{ product.available ? 'Disponível' : 'Indisponível' }}</span> -->
+                <!-- <span *ngIf="product.doneness" class="ml-2 text-gray-600 font-bold">Cozimento: {{ product.doneness |
+                    titlecase }}</span> -->
+            </div>
+        </div>
+        <div *ngIf="totalItems > 10" class="col-span-full text-center mt-4">
+            <a class="text-ifood-red cursor-pointer rounded-lg hover:underline transition duration-200">
+                Ver mais produtos
+            </a>
+        </div>
+    </div>
+</section>

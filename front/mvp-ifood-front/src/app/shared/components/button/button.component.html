@@ -1,0 +1,8 @@
+<button
+  [type]="type"
+  [disabled]="loading || disabled"  
+  class="w-full h-12 cursor-pointer bg-ifood-red text-white font-semibold py-3 rounded-lg hover:bg-red-500 transition duration-300 shadow-md flex items-center justify-center relative"
+>
+  <svg *ngIf="loading" class="animate-spin h-5 w-5 border-4 border-white border-t-transparent rounded-full absolute"></svg>
+  <span class="px-2" [class.invisible]="loading">{{ label }}</span>
+</button>

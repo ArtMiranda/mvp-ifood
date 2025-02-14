@@ -1,0 +1,52 @@
+<app-header (searchQueryChanged)="onSearchQueryChanged($event)"></app-header>
+
+
+<div *ngIf="searched == false" class="block justify-center min-h-screen">
+    <div class="text-center p-12">
+        <h1 class="text-4xl font-semibold text-ifood-red">Está com fome de que?</h1>
+        <p class="text-gray-600 mt-4">Digite o nome do restaurante ou produto que deseja encontrar</p>
+    </div>
+    <div class="w-full m-auto px-4 cursor-grab">
+        <app-carousel
+            [images]="['assets/banners/banner1.jpg', 'assets/banners/banner2.jpg', 'assets/banners/banner3.jpg', 'assets/banners/banner4.jpg']"></app-carousel>
+    </div>
+    <div class="p-8 pb-0">
+        <app-restaurant-list [restaurants]="recommendedRestaurants" label="Restaurantes recomendados"
+            subtitle="Baseado nos seus interesses"></app-restaurant-list>
+    </div>
+    <div class="p-8">
+        <app-product-list [products]="recommendedProducts" label="Produtos recomendados"
+            subtitle="Baseado nos seus interesses"></app-product-list>
+    </div>
+</div>
+
+<div *ngIf="totalRestaurantItems === 0 && totalProductItems === 0 && searched == true"
+    class="block justify-center min-h-screen">
+    <div class="text-center p-12">
+        <h1 class="text-4xl font-semibold text-ifood-red">Nenhum resultado encontrado :(</h1>
+        <p class="text-gray-600 mt-4">Tente pesquisar por outro termo ou confira nossas recomendações</p>
+    </div>
+    <div class="p-8 pb-0">
+        <app-restaurant-list [restaurants]="recommendedRestaurants" label="Restaurantes recomendados"
+            subtitle="Baseado nos seus interesses"></app-restaurant-list>
+    </div>
+    <div class="p-8">
+        <app-product-list [products]="recommendedProducts" label="Produtos recomendados"
+            subtitle="Baseado nos seus interesses"></app-product-list>
+
+    </div>
+</div>
+
+<div *ngIf="searched == true && (totalRestaurantItems > 0 || totalProductItems > 0)" class="min-h-screen">
+    <div class="p-8 pb-0">
+        <app-restaurant-list [totalItems]="totalRestaurantItems" [restaurants]="restaurants"
+            subtitle="Baseado nos termos da pesquisa"></app-restaurant-list>
+    </div>
+
+    <div class="p-8 pt-4">
+        <app-product-list [totalItems]="totalProductItems" [products]="products"
+            subtitle="Baseado nos termos da pesquisa"></app-product-list>
+    </div>
+</div>
+
+<app-footer></app-footer>
