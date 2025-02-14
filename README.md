@@ -68,7 +68,7 @@ Um **Interceptor** no Angular é um middleware que intercepta todas as requisiç
 _Ilustração representando o fluxo de autenticação com o Interceptor Angular._  
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/15df3feb-39e6-40b5-a912-c147662a0525" alt="Fluxo de Autenticação JWT" width="500"/>
+  <img src="https://github.com/user-attachments/assets/77f8f5a4-3b0a-4c4b-942f-5a4f6d2ba007" alt="Fluxo de Autenticação JWT"/>
 </div>
 
 ---
