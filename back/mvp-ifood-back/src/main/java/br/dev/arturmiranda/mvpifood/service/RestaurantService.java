@@ -66,18 +66,4 @@ public class RestaurantService {
         Pageable pageable = PageRequest.of(page, size);
         return restaurantRepository.getRecommendations(pageable).map(RestaurantDTO::new);
     }
-
-    public RestaurantDTO updatePicture(UUID id, String picture) {
-        Restaurant restaurant = restaurantRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Restaurant not found"));
-        restaurant.setPicture(picture);
-        return new RestaurantDTO(restaurantRepository.save(restaurant));
-    }
-
-    public RestaurantDTO updateBanner(UUID id, String banner) {
-        Restaurant restaurant = restaurantRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Restaurant not found"));
-        restaurant.setBanner(banner);
-        return new RestaurantDTO(restaurantRepository.save(restaurant));
-    }
 }

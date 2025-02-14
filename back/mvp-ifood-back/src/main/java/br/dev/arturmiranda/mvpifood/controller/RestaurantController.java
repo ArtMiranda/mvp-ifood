@@ -70,18 +70,6 @@ public class RestaurantController {
         return ResponseEntity.ok(restaurantService.searchRestaurants(query, page, size));
     }
 
-    @PostMapping("/updatePicture/{id}")
-    @Operation(summary = "Update restaurant picture", description = "Update restaurant picture by id in the application")
-    public ResponseEntity<RestaurantDTO> updateRestaurantPicture(@PathVariable UUID id, @RequestBody String picture) {
-        return ResponseEntity.ok(restaurantService.updatePicture(id, picture));
-    }
-
-    @PostMapping("/updateBanner/{id}")
-    @Operation(summary = "Update restaurant banner", description = "Update restaurant banner by id in the application")
-    public ResponseEntity<RestaurantDTO> updateRestaurantBanner(@PathVariable UUID id, @RequestBody String banner) {
-        return ResponseEntity.ok(restaurantService.updateBanner(id, banner));
-    }
-
     @GetMapping("/recommendations")
     @Operation(summary = "Get recommendations", description = "Get restaurant recommendations for the user")
     public ResponseEntity<Page<RestaurantDTO>> getRecommendations(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "8") int size) {
