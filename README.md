@@ -1,4 +1,4 @@
-**Desafio Técnico - Grão Direto**  
+## **Desafio Técnico - Grão Direto**  
 **Autor:** Artur Campos Miranda  
 
 ## 📌 Sobre o Projeto  
